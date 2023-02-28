@@ -22,11 +22,8 @@ exports.accesstoken = (userid) => {
     };
 
 exports.verifyaccesstoken = (req, res, next) => {
-        if(!req.headers['authorization']) return next(createError.Unauthorized());
-        const authheader = req.headers['authorization'];
-        const bearertoken = authheader.split(' ');
-        const token = bearertoken[1];
-        console.log(token);
+        if(!req.cookies.acc_token) return next(createerror.Unauthorized());
+        const token = req.cookies.acc_token;
         jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,payload)=>{
             if(err){
                 const message = err.name === 'JsonWebTokenError' ? 'Unauthorized' : err.message

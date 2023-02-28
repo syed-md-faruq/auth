@@ -6,7 +6,7 @@ router.post('/signup',signup);
 router.post('/login',login);
 router.post('/refresh-token',refresh_token);
 router.delete('/logout',async(req, res, next)=>{
-    res.send("logout route")
+    res.clearCookie('acc_token').send('logout')
 });
 router.post('/password-reset-request', password_reset_request);
 router.post('/reset-password', resetpassword)

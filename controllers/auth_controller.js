@@ -16,9 +16,7 @@ exports.signup = async(req, res, next)=>{
 
         const user = new user_model(req.body);
         const saveduser = await user.save();
-        const acctoken = await accesstoken(saveduser.id);
-        const reftoken = await refreshtoken(saveduser.id);
-        res.send({acctoken,reftoken});
+        res.send("user created, visit login page");
 
     } catch (error) {
         if(error.isJoi === true) error.status = 422
@@ -38,7 +36,7 @@ exports.login = async(req, res, next)=>{
         const acctoken = await accesstoken(user.id);
         const reftoken = await refreshtoken(user.id);
 
-        res.send({acctoken,reftoken});
+        res.cookie("acc_token",acctoken).send({reftoken});
     } catch (error) {
         if(error.isJoi === true) return next(createerror.BadRequest('Invalid Username/Password'));
         next(error);
@@ -105,7 +103,7 @@ exports.resetpassword = async (req, res, next) => {
     "reset success"
     );
     await passwordresettoken.deleteOne();
-    res.json({"message":"success"})
+    res.json({"message":"successful, visit login page"})
 } catch (error) {
     next(error);
 }

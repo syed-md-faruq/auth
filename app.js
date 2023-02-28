@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const createerror = require('http-errors');
+const cookieParser = require("cookie-parser");
 require('dotenv').config();
 
 mongoose.set('strictQuery', false);
@@ -12,6 +13,7 @@ mongoose.connect("mongodb://localhost:27017/users").then(() => {
 const authroute = require('./routes/authroutes');
 const {verifyaccesstoken} = require('./helpers/jwt');
 const app = express();
+app.use(cookieParser())
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -19,6 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.get('/', verifyaccesstoken, async (req, res, next) => {
     res.send("Hello user");
 });
+
 
 app.use('/auth', authroute);
 
