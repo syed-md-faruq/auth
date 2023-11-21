@@ -18,9 +18,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get('/new1',async(req,res) => {
-    res.send("new route 1");
-})
+// app.get('/new1',async(req,res) => {
+//     res.send("new route 1");
+// })
 
 app.get('/new2',async(req,res) => {
     res.send("new route 2");
