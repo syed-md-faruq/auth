@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const createerror = require('http-errors');
 const cookieParser = require("cookie-parser");
 require('dotenv').config();
-
+//adding comment
 mongoose.set('strictQuery', false);
 mongoose.connect("mongodb://localhost:27017/users").then(() => {
     console.log("Connected to MongoDB");
