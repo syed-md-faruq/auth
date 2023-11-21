@@ -24,6 +24,7 @@ app.get('/new',async(req,res) => {
 
 app.get('/new2',async(req,res) => {
     res.send("new route 2");
+})
 
 app.get('/new3',async(req,res) => {
     res.send("new route 3");
