@@ -18,6 +18,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.get('/new',async(req,res) => {
+    res.send("new route");
+})
+
 app.get('/', verifyaccesstoken, async (req, res, next) => {
     res.send("Hello user");
 });
