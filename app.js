@@ -21,6 +21,9 @@ app.use(express.urlencoded({extended: true}));
 app.get('/new',async(req,res) => {
     res.send("new route");
 })
+app.get('/new2',async(req,res) => {
+    res.send("new route 2");
+})
 
 app.get('/', verifyaccesstoken, async (req, res, next) => {
     res.send("Hello user");
